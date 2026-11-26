@@ -2,16 +2,16 @@
 
 A full-stack game store and tournament platform. Players browse a catalog of PC and mobile games, buy them through a cart, and compete in single-elimination tournaments with live brackets. Admins manage games, orders, messages and tournaments.
 
-> **Live demo:** _coming soon_
+> **Live demo:** https://gamerslounge-conf.onrender.com
 
 ## Screenshots
 
-| Store | Cart and orders |
-|---|---|
+| Store                                | Cart and orders                    |
+| ------------------------------------ | ---------------------------------- |
 | ![Store](docs/screenshots/store.png) | ![Cart](docs/screenshots/cart.png) |
 
-| Tournament bracket |
-|---|
+| Tournament bracket                                  |
+| --------------------------------------------------- |
 | ![Bracket](docs/screenshots/tournament-bracket.png) |
 
 ## Features
@@ -26,13 +26,13 @@ A full-stack game store and tournament platform. Players browse a catalog of PC 
 
 ## Tech stack
 
-| Layer | Tools |
-|---|---|
-| Server | Node.js 22, Express 5 |
-| Database | SQLite (better-sqlite3), foreign keys and transactions |
-| Auth and security | bcrypt, JWT, helmet (CSP), rate limiting, zod input validation |
-| Front end | Plain HTML, CSS and JavaScript (no framework), served by the same server |
-| Testing | Node's built-in test runner: 23 tests covering the API, auth rules and bracket logic. The UI was also tested end to end in a real browser (Playwright) |
+| Layer             | Tools                                                                                                                                                  |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Server            | Node.js 22, Express 5                                                                                                                                  |
+| Database          | SQLite (better-sqlite3), foreign keys and transactions                                                                                                 |
+| Auth and security | bcrypt, JWT, helmet (CSP), rate limiting, zod input validation                                                                                         |
+| Front end         | Plain HTML, CSS and JavaScript (no framework), served by the same server                                                                               |
+| Testing           | Node's built-in test runner: 23 tests covering the API, auth rules and bracket logic. The UI was also tested end to end in a real browser (Playwright) |
 
 ## Run it locally
 
@@ -65,30 +65,30 @@ Single elimination. When an admin starts a tournament, players are shuffled into
 
 Errors are always JSON: `{ "error": "message", "details": [...] }`.
 
-| Method | Path | Access | Notes |
-|---|---|---|---|
-| POST | `/api/auth/register` | public | `username`, `email`, `password` (8+ chars) |
-| POST | `/api/auth/login` | public | returns `{ user, token }` and sets an httpOnly cookie |
-| POST | `/api/auth/logout` | public | clears the cookie |
-| GET | `/api/auth/me` | user | |
-| GET | `/api/games` | public | `?platform=pc\|mobile&genre=&q=&sort=title\|price_asc\|price_desc\|newest&page=&limit=` |
-| GET | `/api/games/:idOrSlug` | public | |
-| POST / PATCH / DELETE | `/api/games[/:id]` | admin | DELETE is a soft delete, so old orders still show the game |
-| GET | `/api/news`, `/api/news/:id` | public | `?tag=&page=&limit=` |
-| POST / DELETE | `/api/news[/:id]` | admin | |
-| POST | `/api/orders` | user | `{ items: [{ gameId, quantity }] }`, prices come from the database |
-| GET | `/api/orders` | user | your orders (`?all=true` for admins) |
-| GET | `/api/orders/:id` | owner/admin | |
-| PATCH | `/api/orders/:id/status` | admin | `pending`, `paid`, `cancelled`, `refunded` |
-| POST | `/api/contact` | public | `name`, `email`, `message` |
-| GET | `/api/contact/messages` | admin | `?unread=true` |
-| PATCH | `/api/contact/messages/:id/read` | admin | |
-| GET | `/api/tournaments` | public | `?status=open\|in_progress\|completed` |
-| GET | `/api/tournaments/:id` | public | players, seeds and every match |
-| POST | `/api/tournaments` | admin | `name`, `gameId?`, `maxPlayers` (2-64), `startsAt?` |
-| POST | `/api/tournaments/:id/join`, `/leave` | user | only while registration is open |
-| POST | `/api/tournaments/:id/start` | admin | seeds players and builds the bracket |
-| POST | `/api/tournaments/:id/matches/:matchId/result` | admin | `{ winnerId }` |
+| Method                | Path                                           | Access      | Notes                                                                                   |
+| --------------------- | ---------------------------------------------- | ----------- | --------------------------------------------------------------------------------------- |
+| POST                  | `/api/auth/register`                           | public      | `username`, `email`, `password` (8+ chars)                                              |
+| POST                  | `/api/auth/login`                              | public      | returns `{ user, token }` and sets an httpOnly cookie                                   |
+| POST                  | `/api/auth/logout`                             | public      | clears the cookie                                                                       |
+| GET                   | `/api/auth/me`                                 | user        |                                                                                         |
+| GET                   | `/api/games`                                   | public      | `?platform=pc\|mobile&genre=&q=&sort=title\|price_asc\|price_desc\|newest&page=&limit=` |
+| GET                   | `/api/games/:idOrSlug`                         | public      |                                                                                         |
+| POST / PATCH / DELETE | `/api/games[/:id]`                             | admin       | DELETE is a soft delete, so old orders still show the game                              |
+| GET                   | `/api/news`, `/api/news/:id`                   | public      | `?tag=&page=&limit=`                                                                    |
+| POST / DELETE         | `/api/news[/:id]`                              | admin       |                                                                                         |
+| POST                  | `/api/orders`                                  | user        | `{ items: [{ gameId, quantity }] }`, prices come from the database                      |
+| GET                   | `/api/orders`                                  | user        | your orders (`?all=true` for admins)                                                    |
+| GET                   | `/api/orders/:id`                              | owner/admin |                                                                                         |
+| PATCH                 | `/api/orders/:id/status`                       | admin       | `pending`, `paid`, `cancelled`, `refunded`                                              |
+| POST                  | `/api/contact`                                 | public      | `name`, `email`, `message`                                                              |
+| GET                   | `/api/contact/messages`                        | admin       | `?unread=true`                                                                          |
+| PATCH                 | `/api/contact/messages/:id/read`               | admin       |                                                                                         |
+| GET                   | `/api/tournaments`                             | public      | `?status=open\|in_progress\|completed`                                                  |
+| GET                   | `/api/tournaments/:id`                         | public      | players, seeds and every match                                                          |
+| POST                  | `/api/tournaments`                             | admin       | `name`, `gameId?`, `maxPlayers` (2-64), `startsAt?`                                     |
+| POST                  | `/api/tournaments/:id/join`, `/leave`          | user        | only while registration is open                                                         |
+| POST                  | `/api/tournaments/:id/start`                   | admin       | seeds players and builds the bracket                                                    |
+| POST                  | `/api/tournaments/:id/matches/:matchId/result` | admin       | `{ winnerId }`                                                                          |
 
 ## Deploying (Render)
 
