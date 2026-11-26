@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">GAMERS<span>LOUNGE</span></a>
+
+        <ul class="nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="tournament.html">Tournaments</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="action">
+            <div class="searchBx">
+                <a href="#"><i class="bx bx-search"></i></a>
+                <input type="text" placeholder="Search Games">
+            </div>
+        </div>
+
+        <div class="nav-icons">
+            <i class='bx bx-bell  bx-tada' id="bell-icon"><span></span></i>
+            <i class='bx bxs-download'></i>
+        </div>
+
+        <div class="notification">
+            <div class="notification-box">
+                <i class='bx bxs-check-circle'></i>
+                <p>Congratulations, Your game downloaded successfully.</p>
+            </div>
+            <div class="notification-box box-color">
+                <i class='bx bxs-x-circle' ></i>
+                <p>Could not apply changes.</p>
+            </div>
+        </div>
+        <div class="toggleMenu" onclick="toggleMenu()"></div>
+    </header>
+
+    <!-- Head Banner -->
+    <div class="banner animeX" id="home">
+        <div class="bg">
+            <div class="content">
+                <h2>A New <span>Home</span> For <br>
+                    Game <span>Lovers</span></h2>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius consequuntur saepe officia dolore.</p>
+                <a href="#" class="btn">Join Now</a>
+            </div>
+            <img src="images/assasin.png" alt="">
+        </div>
+    </div>
+
+    <!-- About -->
+    <div class="about animeX" id="about">
+        <div class="contentBx">
+            <h2>About Us</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, eos corporis magnam exercitationem
+                hic cupiditate omnis quibusdam asperiores debitis. Magni ducimus et officia voluptates architecto
+                deleniti, sunt nisi rerum ea.
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit officiis corporis accusamus maiores
+                assumenda, quam nihil temporibus non odio, magnam labore a unde odit neque minima nostrum illo est
+                iusto.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid aperiam cumque inventore aliquam et
+                aspernatur maiores molestiae mollitia quis quod voluptatibus iste ad quidem, excepturi perferendis, quos
+                totam sapiente impedit.
+            </p>
+            <a href="contact.html">Read more</a>
+        </div>
+        <img src="images/videogame.png" style="width: 500px;">
+    </div>
+
+
+    <!-- Games -->
+    <div class="games animeX" id="games">
+        <h2>Popular Games</h2>
+        <ul>
+            <li class="list active" data-filter="all">All</li>
+            <li class="list" data-filter="pc">Pc games</li>
+            <li class="list" data-filter="mobile">Mobile games</li>
+        </ul>
+        <div class="cardBx">
+            <div class="card" data-item="pc">
+                <img src="images/gta5.jpeg">
+                <div class="content">
+                    <h4>Grand Theft Auto</h4>
+                    <div class="progress-line"><span></span></div>
+                    <div class="info">
+                        <p>Pricing <br><span>$10</span></p>
+                        <a href="#">Play Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-item="pc">
+                <img src="images/download (1).jpeg">
+                <div class="content">
+                    <h4>Batman Arkam City</h4>
+                    <div class="progress-line"><span></span></div>
+                    <div class="info">
+                        <p>Pricing <br><span>$10</span></p>
+                        <a href="#">Play Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-item="pc">
+                <img src="images/download (3).jpeg">
+                <div class="content">
+                    <h4>Assasins Creed Valhalla</h4>
+                    <div class="progress-line"><span></span></div>
+                    <div class="info">
+                        <p>Pricing <br><span>$10</span></p>
+                        <a href="#">Play Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-item="pc">
+                <img src="images/download (4).jpeg">
+                <div class="content">
+                    <h4>Spider man</h4>
+                    <div class="progress-line"><span></span></div>
+                    <div class="info">
+                        <p>Pricing <br><span>$10</span></p>
+                        <a href="#">Play Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-item="pc">
+                <img src="images/gow ragnarok.jpeg">
+                <div class="content">
+                    <h4>God of War</h4>
+                    <div class="progress-line"><span></span></div>
+                    <div class="info">
+                        <p>Pricing <br><span>$10</span></p>
+                        <a href="#">Play Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-item="mobile">
+                <img src="images/images.jpeg">
+                <div class="content">
+                    <h4>Battle Grounds Mobile</h4>
+                    <div class="progress-line"><span></span></div>
+                    <div class="info">
+                        <p>Pricing <br><span>$10</span></p>
+                        <a href="#">Play Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-item="mobile">
+                <img src="images/images (1).jpeg">
+                <div class="content">
+                    <h4>Call Of Duty Mobile</h4>
+                    <div class="progress-line"><span></span></div>
+                    <div class="info">
+                        <p>Pricing <br><span>$10</span></p>
+                        <a href="#">Play Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-item="mobile">
+                <img src="images/download (5).jpeg">
+                <div class="content">
+                    <h4>Free Fire</h4>
+                    <div class="progress-line"><span></span></div>
+                    <div class="info">
+                        <p>Pricing <br><span>$10</span></p>
+                        <a href="#">Play Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-item="mobile">
+                <img src="images/download (6).jpeg">
+                <div class="content">
+                    <h4>Shadow Fight Arena</h4>
+                    <div class="progress-line"><span></span></div>
+                    <div class="info">
+                        <p>Pricing <br><span>$10</span></p>
+                        <a href="#">Play Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tournaments -->
+    <div class="tournaments animeX" id="tournaments">
+        <h2>Live Tournaments</h2>
+        <div class="boxBx">
+            <div class="box">
+                <img src="images/download.jpeg">
+                <div class="content">
+                    <h4><span>50</span> Matches in progress..</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, dolorum! Deleniti voluptati,
+                    pariatur at est consequuntur voluptates, eligendi illum, odit veritatis cupiditate ullam aliquid.
+                    </p>
+                    <div class="btn">
+                        <a href="#" class="watch">Watch</a>
+                        <a href="#" class="join">Join Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/download (2).jpeg">
+                <div class="content">
+                    <h4><span>30</span> Matches in progress..</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, dolorum! Deleniti voluptati,
+                    pariatur at est consequuntur voluptates, eligendi illum, odit veritatis cupiditate ullam aliquid.
+                    </p>
+                    <div class="btn">
+                        <a href="#" class="watch">Watch</a>
+                        <a href="#" class="join">Join Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/download (7).jpeg">
+                <div class="content">
+                    <h4><span>40</span> Matches in progress..</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, dolorum! Deleniti voluptati,
+                    pariatur at est consequuntur voluptates, eligendi illum, odit veritatis cupiditate ullam aliquid.
+                    </p>
+                    <div class="btn">
+                        <a href="#" class="watch">Watch</a>
+                        <a href="#" class="join">Join Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/download (8).jpeg">
+                <div class="content">
+                    <h4><span>40</span> Matches in progress..</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, dolorum! Deleniti voluptati,
+                    pariatur at est consequuntur voluptates, eligendi illum, odit veritatis cupiditate ullam aliquid.
+                    </p>
+                    <div class="btn">
+                        <a href="#" class="watch">Watch</a>
+                        <a href="#" class="join">Join Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/download (9).jpeg">
+                <div class="content">
+                    <h4><span>20</span> Matches in progress..</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, dolorum! Deleniti voluptati,
+                    pariatur at est consequuntur voluptates, eligendi illum, odit veritatis cupiditate ullam aliquid.
+                    </p>
+                    <div class="btn">
+                        <a href="#" class="watch">Watch</a>
+                        <a href="#" class="join">Join Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="box">
+                    <img src="images/download (5).jpeg">
+                    <div class="content">
+                        <h4><span>50</span> Matches in progress..</h4>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, dolorum! Deleniti voluptati,
+                        pariatur at est consequuntur voluptates, eligendi illum, odit veritatis cupiditate ullam aliquid.
+                        </p>
+                        <div class="btn">
+                            <a href="#" class="watch">Watch</a>
+                            <a href="#" class="join">Join Now</a>
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- contact us -->
+    <div class="contact animeX" id="contact">
+        <img src="images/launcher.jpg" alt="">
+        <form class="form" id="contact-form" novalidate>
+            <h1>Contact Us</h1>
+            <div class="inputBx">
+                <p>Enter Name</p>
+                <input type="text" name="name" placeholder="Full Name" maxlength="100">
+            </div>
+            <div class="inputBx">
+                <p>Enter Email</p>
+                <input type="email" name="email" placeholder="Email" maxlength="254">
+            </div>
+            <div class="inputBx">
+                <p>Message</p>
+                <textarea name="message" placeholder="Type here..." maxlength="2000"></textarea>
+            </div>
+            <p id="form-status" role="status"></p>
+            <div class="inputBx">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+<!-- footer -->
+    <footer>
+        <div class="info">
+            <a href="#" class="logo">GamersLounge</a>
+            <p><i class='bx bx-copyright'></i>2023 All Rights Reserved</p>
+            <ul>
+                <li><a href="#"><i class='bx bxl-facebook' ></i></a></li>
+                <li><a href="#"><i class='bx bxl-instagram' ></i></a></li>
+                <li><a href="#"><i class='bx bxl-twitter' ></i></a></li>
+                <li><a href="#"><i class='bx bxl-youtube' ></i></a></li>
+            </ul>
+        </div>
+    </footer>
+
+
+    <script>
+        /* Sticky Navbar */
+        window.addEventListener('scroll', function () {
+            var header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+
+        // responsive navbar
+
+        function toggleMenu(){
+            const toggleMenu = document.querySelector('.toggleMenu');
+            const nav = document.querySelector('.nav');
+            toggleMenu.classList.toggle('active')
+            nav.classList.toggle('active')
+        }
+
+    //    scrolling animation
+        window.addEventListener('scroll',function(){
+            var anime = document.querySelectorAll('.animeX');
+
+            for(var s = 0; s < anime.length; s++){
+                var windowheight = window.innerHeight;
+                var animetop = anime[s].getBoundingClientRect().top;
+                var animepoint = 150;
+
+                if(animetop < windowheight - animepoint){
+                    anime[s].classList.add('active');
+                }
+                else{
+                    anime[s].classList.remove('active');
+                }
+            }
+        })
+
+
+        // notification
+        let bell = document.querySelector('.notification');
+
+        document.querySelector('#bell-icon').onclick = () =>{
+            bell.classList.toggle('toxic');
+        }
+
+
+
+
+        // Filterable Card
+        let list = document.querySelectorAll('.list');
+        let card = document.querySelectorAll('.card');
+
+        for (let i = 0; i < list.length; i++) {
+            list[i].addEventListener('click', function () {
+                for (let j = 0; j < list.length; j++) {
+                    list[j].classList.remove('active');
+                }
+                this.classList.add('active');
+
+                let dataFilter = this.getAttribute('data-filter');
+
+                for (let k = 0; k < card.length; k++) {
+                    card[k].classList.remove('active');
+                    card[k].classList.add('hide');
+
+                    if (card[k].getAttribute('data-item') == dataFilter || dataFilter == 'all') {
+                        card[k].classList.remove('hide');
+                        card[k].classList.add('active');
+                    }
+                }
+            })
+        }
+    </script>
+    <script src="js/site.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">GAMERS<span>LOUNGE</span></a>
+
+        <ul class="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="tournament.html">Tournaments</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="action">
+            <div class="searchBx">
+                <a href="#"><i class="bx bx-search"></i></a>
+                <input type="text" placeholder="Search Games">
+            </div>
+        </div>
+
+        <div class="nav-icons">
+            <i class='bx bx-bell  bx-tada' id="bell-icon"><span></span></i>
+            <i class='bx bxs-download'></i>
+        </div>
+
+        <div class="notification">
+            <div class="notification-box">
+                <i class='bx bxs-check-circle'></i>
+                <p>Congratulations, Your game downloaded successfully.</p>
+            </div>
+            <div class="notification-box box-color">
+                <i class='bx bxs-x-circle' ></i>
+                <p>Could not apply changes.</p>
+            </div>
+        </div>
+        <div class="toggleMenu" onclick="toggleMenu()"></div>
+    </header>
+
+
+    <div class="about-us">
+        <h2>ABOUT US</h2>
+        <p>GamersLounge is a site which makes game lovers feel at home. 
+        By providing varieties of exciting options and tournaments and games,
+        We've brought both bad and good gamers together. We want to appreciate 
+        all members and participants of the platform for all their supports.
+        We also thank our sponsors. If there is any thing you wish we could add
+        to increase the productivity and performance of our site, we'd like to 
+        hear from you all. Leave a message and it will be read by our admins.
+        We thank you all once again and have a wonderful time   
+        </p>
+
+    </div>
+    <img src="images/videogame.png" style="width: 500px;" class="conBox">
+
+
+    <div class="contact " id="contact">
+        <img src="images/launcher.jpg" alt="">
+        <form class="form" id="contact-form" novalidate>
+            <h1>Contact Us</h1>
+            <div class="inputBx">
+                <p>Enter Name</p>
+                <input type="text" name="name" placeholder="Full Name" maxlength="100">
+            </div>
+            <div class="inputBx">
+                <p>Enter Email</p>
+                <input type="email" name="email" placeholder="Email" maxlength="254">
+            </div>
+            <div class="inputBx">
+                <p>Message</p>
+                <textarea name="message" placeholder="Type here..." maxlength="2000"></textarea>
+            </div>
+            <p id="form-status" role="status"></p>
+            <div class="inputBx">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+
+
+    <footer>
+        <div class="info">
+            <a href="#" class="logo">GamersLounge</a>
+            <p><i class='bx bx-copyright'></i>2023 All Rights Reserved</p>
+            <ul>
+                <li><a href="#"><i class='bx bxl-facebook' ></i></a></li>
+                <li><a href="#"><i class='bx bxl-instagram' ></i></a></li>
+                <li><a href="#"><i class='bx bxl-twitter' ></i></a></li>
+                <li><a href="#"><i class='bx bxl-youtube' ></i></a></li>
+            </ul>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+    <script>
+        // sticky navbar
+        window.addEventListener('scroll', function () {
+            var header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+
+        // responsive navbar
+
+        function toggleMenu(){
+            const toggleMenu = document.querySelector('.toggleMenu');
+            const nav = document.querySelector('.nav');
+            toggleMenu.classList.toggle('active')
+            nav.classList.toggle('active')
+        }
+
+              // notifiacation
+         let bell = document.querySelector('.notification');
+
+        document.querySelector('#bell-icon').onclick = () =>{
+        bell.classList.toggle('toxic');
+}
+    </script>
+    <script src="js/site.js"></script>
+    <script src="js/contact.js"></script>
+</body>

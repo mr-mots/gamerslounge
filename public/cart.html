@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - GamersLounge</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">GAMERS<span>LOUNGE</span></a>
+
+        <ul class="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="#tournaments">Tournaments</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="action">
+            <div class="searchBx">
+                <a href="#"><i class="bx bx-search"></i></a>
+                <input type="text" placeholder="Search Games">
+            </div>
+        </div>
+
+        <div class="nav-icons">
+            <i class='bx bx-bell  bx-tada' id="bell-icon"><span></span></i>
+            <i class='bx bxs-download'></i>
+        </div>
+
+        <div class="notification">
+            <div class="notification-box">
+                <i class='bx bxs-check-circle'></i>
+                <p>Congratulations, Your game downloaded successfully.</p>
+            </div>
+            <div class="notification-box box-color">
+                <i class='bx bxs-x-circle' ></i>
+                <p>Could not apply changes.</p>
+            </div>
+        </div>
+        <div class="toggleMenu" onclick="toggleMenu()"></div>
+    </header>
+
+    <main class="page">
+        <h1>Your <span>Cart</span></h1>
+        <div id="cart-list"></div>
+        <div id="cart-summary" hidden>
+            <div class="cart-total">
+                <span>Total: <strong id="cart-total">$0</strong></span>
+                <button type="button" id="checkout" class="btn-main">Place order</button>
+            </div>
+            <p id="checkout-msg" class="form-msg" role="status"></p>
+            <p class="notice">Online payment isn't set up yet. Orders are saved as <b>pending</b> until an admin confirms them.</p>
+        </div>
+        <h2>Your <span>Orders</span></h2>
+        <div id="orders"></div>
+    </main>
+
+    <footer>
+        <div class="info">
+            <a href="#" class="logo">GamersLounge</a>
+            <p><i class='bx bx-copyright'></i>2023 All Rights Reserved</p>
+            <ul>
+                <li><a href="#"><i class='bx bxl-facebook' ></i></a></li>
+                <li><a href="#"><i class='bx bxl-instagram' ></i></a></li>
+                <li><a href="#"><i class='bx bxl-twitter' ></i></a></li>
+                <li><a href="#"><i class='bx bxl-youtube' ></i></a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            document.querySelector('header').classList.toggle('sticky', window.scrollY > 0);
+        });
+        function toggleMenu() {
+            document.querySelector('.toggleMenu').classList.toggle('active');
+            document.querySelector('.nav').classList.toggle('active');
+        }
+        const bell = document.querySelector('.notification');
+        document.querySelector('#bell-icon').onclick = () => bell.classList.toggle('toxic');
+    </script>
+    <script src="js/site.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+
+</html>

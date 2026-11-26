@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">GAMERS<span>LOUNGE</span></a>
+
+        <ul class="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="tournament.html">Tournaments</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="action">
+            <div class="searchBx">
+                <a href="#"><i class="bx bx-search"></i></a>
+                <input type="text" placeholder="Search Games">
+            </div>
+        </div>
+
+        <div class="nav-icons">
+            <i class='bx bx-bell  bx-tada' id="bell-icon"><span></span></i>
+            <i class='bx bxs-download'></i>
+        </div>
+
+        <div class="notification">
+            <div class="notification-box">
+                <i class='bx bxs-check-circle'></i>
+                <p>Congratulations, Your game downloaded successfully.</p>
+            </div>
+            <div class="notification-box box-color">
+                <i class='bx bxs-x-circle' ></i>
+                <p>Could not apply changes.</p>
+            </div>
+        </div>
+        <div class="toggleMenu" onclick="toggleMenu()"></div>
+    </header>
+
+
+    <!--news  -->
+
+    <div class="news animeX" id="news">
+        <p class="mind">What's On Our Mind</p>
+        <h2 class="h2">
+            News And  <span class="span">Headlines</span>
+        </h2>
+        <div class="boxCard">
+            <div class="box">
+            <img src="images/gm 1.jpeg" alt="">
+            <div class="card-content">
+                <a href="#" class="card-tag">Business</a>
+
+                <ul class="card-meta-list">
+                    <li class="card-meta-item">
+                        <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+                        
+                        <time class="card-meta-text" datetime="2023-01-24">Jan 24 2022</time>
+                    </li>
+                    <li class="card-meta-item">
+                        <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                        <p class="card-meta-text">Elliot Anderson</time>
+                    </li>
+                </ul>
+                <h3 class="h3">
+                    <a href="#" class="card-title">Innovative Business All Over The World.</a>
+                </h3>
+                <p class="card-text">
+                    Financial experts support or help you to find out which way you can 
+                    raise your funds more... 
+                </p>
+                <a href="#" class="link">Read More</a>
+
+            </div>
+         </div>
+        
+
+        <div class="box">
+            <img src="images/gm 2.jpeg" alt="">
+            <div class="card-content">
+                <a href="#" class="card-tag">Startup</a>
+
+                <ul class="card-meta-list">
+                    <li class="card-meta-item">
+                        <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+                        
+                        <time class="card-meta-text" datetime="2023-01-24">Jan 24 2022</time>
+                    </li>
+                    <li class="card-meta-item">
+                        <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                        <p class="card-meta-text">Elliot Anderson</time>
+                    </li>
+                </ul>
+                <h3 class="h3">
+                    <a href="#" class="card-title">How to start Initiating A Startup In Few Days.</a>
+                </h3>
+                <p class="card-text">
+                    Financial experts support or help you to find out which way you can 
+                    raise your funds more... 
+                </p>
+                <a href="#" class="link">Read More</a>
+
+            </div>
+         </div>
+
+         <div class="box">
+            <img src="images/gm 3.jpeg" alt="">
+            <div class="card-content">
+                <a href="#" class="card-tag">Finance</a>
+
+                <ul class="card-meta-list">
+                    <li class="card-meta-item">
+                        <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+                        
+                        <time class="card-meta-text" datetime="2023-01-24">Jan 24 2022</time>
+                    </li>
+                    <li class="card-meta-item">
+                        <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                        <p class="card-meta-text">Elliot Anderson</time>
+                    </li>
+                </ul>
+                <h3 class="h3">
+                    <a href="#" class="card-title">Financial Experts Support Help Ypu To Find Out.</a>
+                </h3>
+                <p class="card-text">
+                    Financial experts support or help you to find out which way you can 
+                    raise your funds more... 
+                </p>
+                <a href="#" class="link">Read More</a>
+
+            </div>
+         </div>
+
+         <div class="box">
+            <img src="images/gm 4.jpeg" alt="">
+            <div class="card-content">
+                <a href="#" class="card-tag">Business</a>
+
+                <ul class="card-meta-list">
+                    <li class="card-meta-item">
+                        <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+                        
+                        <time class="card-meta-text" datetime="2023-01-24">Jan 24 2022</time>
+                    </li>
+                    <li class="card-meta-item">
+                        <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                        <p class="card-meta-text">Elliot Anderson</time>
+                    </li>
+                </ul>
+                <h3 class="h3">
+                    <a href="#" class="card-title">Innovative Business All Over The World.</a>
+                </h3>
+                <p class="card-text">
+                    Financial experts support or help you to find out which way you can 
+                    raise your funds more... 
+                </p>
+                <a href="#" class="link">Read More</a>
+
+            </div>
+         </div>
+
+         <div class="box">
+            <img src="images/gm 5.jpeg" alt="">
+            <div class="card-content">
+                <a href="#" class="card-tag">Business</a>
+
+                <ul class="card-meta-list">
+                    <li class="card-meta-item">
+                        <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+                        
+                        <time class="card-meta-text" datetime="2023-01-24">Jan 24 2022</time>
+                    </li>
+                    <li class="card-meta-item">
+                        <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                        <p class="card-meta-text">Elliot Anderson</time>
+                    </li>
+                </ul>
+                <h3 class="h3">
+                    <a href="#" class="card-title">Innovative Business All Over The World.</a>
+                </h3>
+                <p class="card-text">
+                    Financial experts support or help you to find out which way you can 
+                    raise your funds more... 
+                </p>
+                <a href="#" class="link">Read More</a>
+
+            </div>
+         </div>
+
+         <div class="box">
+            <img src="images/gm 6.jpeg" alt="">
+            <div class="card-content">
+                <a href="#" class="card-tag">Business</a>
+
+                <ul class="card-meta-list">
+                    <li class="card-meta-item">
+                        <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+                        
+                        <time class="card-meta-text" datetime="2023-01-24">Jan 24 2022</time>
+                    </li>
+                    <li class="card-meta-item">
+                        <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+                        <p class="card-meta-text">Elliot Anderson</time>
+                    </li>
+                </ul>
+                <h3 class="h3">
+                    <a href="#" class="card-title">Innovative Business All Over The World.</a>
+                </h3>
+                <p class="card-text">
+                    Financial experts support or help you to find out which way you can 
+                    raise your funds more... 
+                </p>
+                <a href="#" class="link">Read More</a>
+
+            </div>
+         </div>
+
+
+    </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <div class="info">
+            <a href="#" class="logo">GamersLounge</a>
+            <p><i class='bx bx-copyright'></i>2023 All Rights Reserved</p>
+            <ul>
+                <li><a href="#"><i class='bx bxl-facebook' ></i></a></li>
+                <li><a href="#"><i class='bx bxl-instagram' ></i></a></li>
+                <li><a href="#"><i class='bx bxl-twitter' ></i></a></li>
+                <li><a href="#"><i class='bx bxl-youtube' ></i></a></li>
+            </ul>
+        </div>
+    </footer>
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        // scrolling animation
+        window.addEventListener('scroll',function(){
+            var anime = document.querySelectorAll('.animeX');
+
+            for(var s = 0; s < anime.length; s++){
+                var windowheight = window.innerHeight;
+                var animetop = anime[s].getBoundingClientRect().top;
+                var animepoint = 150;
+
+                if(animetop < windowheight - animepoint){
+                    anime[s].classList.add('active');
+                }
+                else{
+                    anime[s].classList.remove('active');
+                }
+            }
+        })
+        // sticky navbar
+        window.addEventListener('scroll', function () {
+            var header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+
+        // responsive navbar
+
+        function toggleMenu(){
+            const toggleMenu = document.querySelector('.toggleMenu');
+            const nav = document.querySelector('.nav');
+            toggleMenu.classList.toggle('active')
+            nav.classList.toggle('active')
+        }
+
+              // notifiacation
+         let bell = document.querySelector('.notification');
+
+        document.querySelector('#bell-icon').onclick = () =>{
+        bell.classList.toggle('toxic');
+}
+    </script>
+    <script src="js/site.js"></script>
+</body>    
