@@ -1,21 +1,65 @@
-# GamersLounge Backend
+# GamersLounge
 
-REST API for the GamersLounge game store. It replaces the hard-coded HTML cards with a real database and adds accounts, orders, tournaments with brackets, and a contact inbox.
+A full-stack game store and tournament platform. Players browse a catalog of PC and mobile games, buy them through a cart, and compete in single-elimination tournaments with live brackets. Admins manage games, orders, messages and tournaments.
 
-**Stack:** Node.js 22, Express 5, SQLite (better-sqlite3), JWT auth (httpOnly cookie or Bearer token), zod validation, helmet, rate limiting. Tests use the built-in `node:test`.
+> **Live demo:** _coming soon_
 
-## Run it
+## Screenshots
+
+| Store | Cart and orders |
+|---|---|
+| ![Store](docs/screenshots/store.png) | ![Cart](docs/screenshots/cart.png) |
+
+| Tournament bracket |
+|---|
+| ![Bracket](docs/screenshots/tournament-bracket.png) |
+
+## Features
+
+- **Accounts:** sign up, log in and log out, with hashed passwords and JWT sessions in an httpOnly cookie
+- **Store:** 20 games from the database, with platform filter, live search (title or genre), sorting and pagination
+- **Cart and orders:** a cart that survives login, and checkout that creates a real order. Prices are looked up on the server, so the client can never set its own price
+- **Tournaments:** players join and leave while registration is open. Starting a tournament randomly seeds the players and draws a single-elimination bracket, with byes when the player count isn't a power of two. Reporting a result advances the winner until a champion is crowned. The bracket refreshes live for everyone watching
+- **Admin tools:** create, edit and soft-delete games, manage news, mark orders paid or cancelled, create and run tournaments, and read the contact-form inbox
+- **Contact form:** messages go to an admin-only inbox, rate limited to 5 per hour per visitor
+- **Responsive:** works from phone to wide desktop
+
+## Tech stack
+
+| Layer | Tools |
+|---|---|
+| Server | Node.js 22, Express 5 |
+| Database | SQLite (better-sqlite3), foreign keys and transactions |
+| Auth and security | bcrypt, JWT, helmet (CSP), rate limiting, zod input validation |
+| Front end | Plain HTML, CSS and JavaScript (no framework), served by the same server |
+| Testing | Node's built-in test runner: 23 tests covering the API, auth rules and bracket logic. The UI was also tested end to end in a real browser (Playwright) |
+
+## Run it locally
+
+You need Node.js 22 or newer.
 
 ```bash
+git clone https://github.com/mr-mots/gamerslounge.git
+cd gamerslounge
 npm install
-npm start            # http://localhost:3000, creates and seeds data/gamerslounge.db on first run
-npm test             # 23 tests
+npm start
 ```
 
-On first run in development it creates a dev admin: `admin@gamerslounge.dev` / `admin12345`.
-For anything real, set `ADMIN_EMAIL`, `ADMIN_PASSWORD` and `JWT_SECRET` (see `.env.example`).
+Then open http://localhost:3000. The first run creates and seeds the database, plus a development admin account: `admin@gamerslounge.dev` / `admin12345`. For anything real, copy `.env.example` to `.env` and set `JWT_SECRET`, `ADMIN_EMAIL` and `ADMIN_PASSWORD`.
 
-Put your existing front end (the HTML, CSS and `images/` folder) in a `public/` folder and the server will serve it at `/`.
+Game cover art is not included for copyright reasons. Put your own images in `public/images/` (the expected file names are listed in `src/seed.js`).
+
+```bash
+npm test                  # run the 23 tests
+node src/demo.js          # fill the first open tournament with 7 demo players
+node src/demo.js 2 12     # add 12 demo players to tournament #2
+```
+
+Demo accounts are `demo_player1`, `demo_player2`, ... with the password `password123`. Log in as the admin, open Tournaments, press **Start tournament** and report the results.
+
+## How the tournament engine works
+
+Single elimination. When an admin starts a tournament, players are shuffled into seeds and `src/bracket.js` builds every round. Standard seeding keeps seeds 1 and 2 apart until the final, and if the number of players is not a power of two the top seeds get byes into round 2. Reporting a result moves the winner into the next match, and the tournament completes when the final is decided. All writes happen inside database transactions, so a bracket can never be left half updated.
 
 ## API
 
@@ -27,58 +71,44 @@ Errors are always JSON: `{ "error": "message", "details": [...] }`.
 | POST | `/api/auth/login` | public | returns `{ user, token }` and sets an httpOnly cookie |
 | POST | `/api/auth/logout` | public | clears the cookie |
 | GET | `/api/auth/me` | user | |
-| GET | `/api/games` | public | `?platform=pc\|mobile&genre=&q=&sort=title\|price_asc\|price_desc\|newest&page=&limit=`. `q` searches title and genre |
+| GET | `/api/games` | public | `?platform=pc\|mobile&genre=&q=&sort=title\|price_asc\|price_desc\|newest&page=&limit=` |
 | GET | `/api/games/:idOrSlug` | public | |
 | POST / PATCH / DELETE | `/api/games[/:id]` | admin | DELETE is a soft delete, so old orders still show the game |
-| GET | `/api/news` | public | `?tag=&page=&limit=` |
-| GET | `/api/news/:id` | public | |
+| GET | `/api/news`, `/api/news/:id` | public | `?tag=&page=&limit=` |
 | POST / DELETE | `/api/news[/:id]` | admin | |
-| POST | `/api/orders` | user | `{ items: [{ gameId, quantity }] }`. Prices are looked up server-side |
+| POST | `/api/orders` | user | `{ items: [{ gameId, quantity }] }`, prices come from the database |
 | GET | `/api/orders` | user | your orders (`?all=true` for admins) |
 | GET | `/api/orders/:id` | owner/admin | |
 | PATCH | `/api/orders/:id/status` | admin | `pending`, `paid`, `cancelled`, `refunded` |
-| POST | `/api/contact` | public | `name`, `email`, `message` (5 per hour per IP) |
+| POST | `/api/contact` | public | `name`, `email`, `message` |
 | GET | `/api/contact/messages` | admin | `?unread=true` |
 | PATCH | `/api/contact/messages/:id/read` | admin | |
 | GET | `/api/tournaments` | public | `?status=open\|in_progress\|completed` |
-| GET | `/api/tournaments/:id` | public | players, seeds and every match in the bracket |
+| GET | `/api/tournaments/:id` | public | players, seeds and every match |
 | POST | `/api/tournaments` | admin | `name`, `gameId?`, `maxPlayers` (2-64), `startsAt?` |
-| POST | `/api/tournaments/:id/join` and `/leave` | user | only while registration is open |
-| POST | `/api/tournaments/:id/start` | admin | randomly seeds players and builds the bracket |
-| POST | `/api/tournaments/:id/matches/:matchId/result` | admin | `{ winnerId }`, advances the winner and crowns the champion after the final |
+| POST | `/api/tournaments/:id/join`, `/leave` | user | only while registration is open |
+| POST | `/api/tournaments/:id/start` | admin | seeds players and builds the bracket |
+| POST | `/api/tournaments/:id/matches/:matchId/result` | admin | `{ winnerId }` |
 
-### How tournaments work
-
-Single elimination. When an admin starts a tournament, players are shuffled into seeds and `src/bracket.js` builds every round. If the number of players isn't a power of two, the top seeds get byes and skip round 1. Standard seeding keeps seeds 1 and 2 apart until the final. Reporting a result moves the winner into the next match, and the tournament completes when the final is decided.
-
-## Project layout
+## Project structure
 
 ```
+public/                   front end: HTML pages, style.css, account.css, js/
 src/
   app.js                  Express app (security headers, rate limits, routes)
   server.js               entry point
   db.js                   SQLite schema
-  seed.js                 games (from store.html), news, tournaments, admin
-  auth.js, errors.js      JWT middleware, error helpers
+  seed.js                 games, news, tournaments and the admin account
+  auth.js, errors.js      JWT middleware and error helpers
   bracket.js              pure bracket logic
   tournamentService.js    tournament rules, all writes in transactions
+  demo.js                 adds demo players to a tournament
   routes/                 one file per resource
 test/                     API, tournament and bracket tests
 ```
 
-## Demo data
+## Limitations and next steps
 
-To try a tournament without creating accounts by hand, fill one with fake players:
-
-```bash
-node src/demo.js          # adds 7 players to the first open tournament
-node src/demo.js 2 12     # adds 12 players to tournament #2
-```
-
-Demo accounts are `demo_player1`, `demo_player2`, ... with password `password123`. Then log in as the admin, open the tournament page, press Start and report the results.
-
-## Notes
-
-- Orders are created as `pending`. There is no payment step yet: the next step is Stripe Checkout in test mode, which would flip the order to `paid` from a webhook.
-- The CSP in `app.js` allows inline scripts because the current HTML pages use them. Once that JavaScript moves into `.js` files, remove `'unsafe-inline'`.
-- Game cover art is copyrighted. Swap in your own or free images before deploying publicly.
+- Checkout saves orders as `pending`. Payments are not connected yet. The plan is Stripe Checkout in test mode, with a webhook that marks the order paid.
+- The content security policy still allows inline scripts because the original pages use them. They should move into `.js` files so that allowance can be removed.
+- Planned: an AI game recommender that suggests games from the catalog.
