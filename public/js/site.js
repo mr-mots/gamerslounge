@@ -8,6 +8,50 @@
   css.href = 'account.css';
   document.head.appendChild(css);
 
+  // ---------- image fallback ----------
+  // If a picture can't load (for example the copyrighted game covers that are kept out of GitHub),
+  // swap in a generated cover so the site never shows broken-image icons.
+  function placeholder(label) {
+    const text = (label || 'GamersLounge').slice(0, 40).replace(/[<>&"']/g, '');
+    // Long titles wrap onto two lines at the space closest to the middle.
+    let lines = [text];
+    if (text.length > 16 && text.includes(' ')) {
+      const mid = text.length / 2;
+      let cut = -1;
+      for (let i = 0; i < text.length; i++) {
+        if (text[i] === ' ' && (cut < 0 || Math.abs(i - mid) < Math.abs(cut - mid))) cut = i;
+      }
+      lines = [text.slice(0, cut), text.slice(cut + 1)];
+    }
+    const size = lines.length > 1 ? 21 : text.length > 12 ? 24 : 28;
+    const y0 = lines.length > 1 ? 150 : 162;
+    const tspans = lines
+      .map((l, i) => "<text x='150' y='" + (y0 + i * 28) + "' text-anchor='middle' fill='#fff' font-family='Poppins,Arial,sans-serif' font-size='" + size + "' font-weight='700'>" + l + '</text>')
+      .join('');
+    const svg =
+      "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 250'>" +
+      "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#1b2141'/><stop offset='1' stop-color='#35407e'/></linearGradient></defs>" +
+      "<rect width='300' height='250' fill='url(#g)'/>" +
+      "<g fill='none' stroke='#1aeeef' stroke-width='3' opacity='.85'><rect x='110' y='56' width='80' height='46' rx='23'/><path d='M128 79h16M136 71v16'/><circle cx='164' cy='74' r='3'/><circle cx='174' cy='84' r='3'/></g>" +
+      tspans + '</svg>';
+    return 'data:image/svg+xml,' + encodeURIComponent(svg);
+  }
+  function fixImage(img) {
+    if (img.dataset.fallback) return; // never retry, so a failing fallback can't loop
+    img.dataset.fallback = '1';
+    img.src = placeholder(img.alt);
+  }
+  document.addEventListener('error', (event) => {
+    if (event.target && event.target.tagName === 'IMG') fixImage(event.target);
+  }, true);
+  function scanImages() {
+    document.querySelectorAll('img').forEach((img) => {
+      if (img.getAttribute('src') && img.complete && img.naturalWidth === 0) fixImage(img);
+    });
+  }
+  scanImages();
+  window.addEventListener('load', scanImages);
+
   // ---------- API helper ----------
   GL.api = async function (method, path, body) {
     const res = await fetch(path, {

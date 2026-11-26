@@ -90,6 +90,14 @@ Errors are always JSON: `{ "error": "message", "details": [...] }`.
 | POST | `/api/tournaments/:id/start` | admin | seeds players and builds the bracket |
 | POST | `/api/tournaments/:id/matches/:matchId/result` | admin | `{ winnerId }` |
 
+## Deploying (Render)
+
+The repo includes a `render.yaml` Blueprint. On [Render](https://render.com): **New → Blueprint**, pick this repository, enter an `ADMIN_EMAIL` and a strong `ADMIN_PASSWORD` when asked, and apply. Render builds the app, generates a `JWT_SECRET`, and gives you a public URL.
+
+On Render's free plan the filesystem is not persistent, so the SQLite database resets whenever the service sleeps (after 15 minutes without traffic) or redeploys. Games, news and tournaments are re-seeded on every start, but accounts and orders do not survive. The first request after a sleep takes about a minute. For real use, move the data to a hosted Postgres database or a paid plan with a persistent disk.
+
+When a cover image is missing (they are not in the repo), the front end shows a generated placeholder instead.
+
 ## Project structure
 
 ```

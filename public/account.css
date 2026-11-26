@@ -426,3 +426,16 @@ h1 .badge { vertical-align: middle; font-size: 0.4em; margin-left: 8px; }
     background: #050e2d; color: #fff; font-size: 1em;
 }
 .t-create input:focus, .t-create select:focus { box-shadow: 0 0 0 2px #1aeeef; }
+
+/* mobile menu close button: drawn with text so it doesn't depend on images/close.png */
+@media (max-width: 991px) {
+    .toggleMenu.active { background: none; }
+    .toggleMenu.active::before {
+        content: '\2715';
+        display: block;
+        color: #fff;
+        font-size: 24px;
+        line-height: 30px;
+        text-align: center;
+    }
+}

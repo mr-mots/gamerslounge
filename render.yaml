@@ -1,0 +1,20 @@
+# Render Blueprint: describes how to build and run the app on Render's free plan.
+services:
+  - type: web
+    name: gamerslounge
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true # Render creates a random secret for you
+      - key: ADMIN_EMAIL
+        sync: false # Render asks you for this when you create the service
+      - key: ADMIN_PASSWORD
+        sync: false # ...and this one. Choose a strong password.
